@@ -9,5 +9,11 @@ jobs:
         run: sudo xcode-select -s /Applications/Xcode_16.4.app || sudo xcode-select -s /Applications/Xcode_16.2.app || true
       - name: Build CoreMLLLM for iOS at the lowered floor
         run: |
-          xcodebuild -scheme CoreMLLLM -destination 'generic/platform=iOS'             IPHONEOS_DEPLOYMENT_TARGET=16.0 CODE_SIGNING_ALLOWED=NO build 2>&1 | tail -40
-          exit ${PIPESTATUS[0]}
+          set -o pipefail
+          xcodebuild -scheme CoreMLLLM -destination 'generic/platform=iOS' \
+            IPHONEOS_DEPLOYMENT_TARGET=16.0 CODE_SIGNING_ALLOWED=NO build > full.log 2>&1 || {
+              echo '=== ERRORS ==='
+              grep -E "error:" full.log | sort | uniq -c | sort -rn | head -60
+              exit 65
+            }
+          echo BUILD OK
