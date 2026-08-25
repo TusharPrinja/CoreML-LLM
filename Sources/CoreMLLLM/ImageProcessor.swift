@@ -10,6 +10,7 @@ import Foundation
 ///   3. Patch extraction: 16×16, channels-last, /255 normalization
 ///   4. Meshgrid position IDs (x, y) = (px, py) matching HF indexing="xy"
 ///   5. Padding positions marked with -1
+@available(iOS 18.0, macOS 15.0, *)
 public enum ImageProcessor {
 
     /// Process an image through the vision encoder CoreML model.

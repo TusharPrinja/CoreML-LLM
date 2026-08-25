@@ -12,6 +12,7 @@ import Foundation
 /// Gated HuggingFace models require the caller to pass an `hfToken` (the
 /// `hf_...` read token issued from https://huggingface.co/settings/tokens).
 /// Anonymous public repos work without a token.
+@available(iOS 18.0, macOS 15.0, *)
 public enum Gemma3BundleDownloader {
 
     /// Canonical file lists for each bundle. Centralised here so the API

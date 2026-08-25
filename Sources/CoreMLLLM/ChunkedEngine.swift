@@ -27,6 +27,7 @@ import Foundation
 ///   - INT8 quantized embedding tables (embed_tokens + embed_per_layer)
 ///   - Per-layer projection weight + norm weight (for PLE on CPU/Accelerate)
 ///   - Pre-computed RoPE cos/sin tables (sliding 256-d, full 512-d)
+@available(iOS 18.0, macOS 15.0, *)
 final class ChunkedEngine {
     // Decode chunks. chunk3 is nil in 3-chunk mode; chunk2 holds the 17-layer
     // merged decoder in that case. chunk4 holds the LM-head chunk in both modes.
@@ -2502,6 +2503,7 @@ final class ChunkedEngine {
 
 // MARK: - EAGLE-3 speculative decoding (Phase 2B)
 
+@available(iOS 18.0, macOS 15.0, *)
 extension ChunkedEngine {
     /// True when all four verify chunks are loaded and the most recent decode
     /// step captured EAGLE-3 hidden taps (L8/L17/L34).
@@ -2626,6 +2628,7 @@ extension ChunkedEngine {
 
 // MARK: - SpeculativeTarget conformance
 
+@available(iOS 18.0, macOS 15.0, *)
 extension ChunkedEngine: SpeculativeTarget {
     public func lastHiddenMulti(at layerIndices: [Int]) throws -> [MLMultiArray] {
         try layerIndices.map { idx in

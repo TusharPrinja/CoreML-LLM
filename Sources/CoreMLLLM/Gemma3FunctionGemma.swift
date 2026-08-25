@@ -20,6 +20,7 @@ import Tokenizers
 ///   → token_id     (1,)      int32  (in-model argmax)
 ///   → token_logit  (1,)      fp16
 ///   state kv_cache_0        fp16
+@available(iOS 18.0, macOS 15.0, *)
 public final class FunctionGemma {
 
     public struct Config: Sendable {

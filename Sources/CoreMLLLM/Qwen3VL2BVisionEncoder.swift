@@ -20,6 +20,7 @@ import CoreGraphics
 import Foundation
 import Accelerate
 
+@available(iOS 18.0, macOS 15.0, *)
 public struct Qwen3VL2BVisionFeatures {
     /// Pooled vision tokens. Shape (196, 2048) fp16.
     public let hidden: MLMultiArray
@@ -31,6 +32,7 @@ public struct Qwen3VL2BVisionFeatures {
 }
 
 @Observable
+@available(iOS 18.0, macOS 15.0, *)
 public final class Qwen3VL2BVisionEncoder {
     public struct Config {
         let imageSize: Int       // 448

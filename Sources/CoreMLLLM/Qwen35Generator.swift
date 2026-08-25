@@ -26,6 +26,7 @@ import Foundation
 /// inputs (token/pos/cos/sin) are supplied from pre-built MLFeatureValues.
 /// Initial-call case: when `prevOut` is nil, state inputs come from
 /// zero-initialized MLMultiArrays wrapped in MLFeatureValues.
+@available(iOS 18.0, macOS 15.0, *)
 private final class Qwen35DecodeFeatures: NSObject, MLFeatureProvider {
     private let fvInpTok: MLFeatureValue
     private let fvInpPos: MLFeatureValue
@@ -78,6 +79,7 @@ private final class Qwen35DecodeFeatures: NSObject, MLFeatureProvider {
 /// underlying MLMultiArray buffer is written per-step by
 /// `Qwen35Generator.embedLookup`. Lets the first body chunk reuse the
 /// same zero-copy feature-provider machinery as subsequent chunks.
+@available(iOS 18.0, macOS 15.0, *)
 private final class Qwen35EmbedHiddenProvider: NSObject, MLFeatureProvider {
     let fvHidden: MLFeatureValue
     let featureNames: Set<String> = ["hidden"]
@@ -96,6 +98,7 @@ private final class Qwen35EmbedHiddenProvider: NSObject, MLFeatureProvider {
 /// zero-copy rename trick: chunk-B's `state_X_Y` inputs map to the PREVIOUS
 /// chunk-B call's `new_state_X_Y` outputs. chunk-A and chunk-B state slices
 /// are independent; each provider only touches its own layer range.
+@available(iOS 18.0, macOS 15.0, *)
 private final class Qwen35ChunkBFeatures: NSObject, MLFeatureProvider {
     private let aOut: MLFeatureProvider  // current chunk-A call (carries "hidden")
     private let fvInpPos: MLFeatureValue
@@ -141,6 +144,7 @@ private final class Qwen35ChunkBFeatures: NSObject, MLFeatureProvider {
 }
 
 @Observable
+@available(iOS 18.0, macOS 15.0, *)
 public final class Qwen35Generator {
     public struct Config {
         let seqLen: Int           // prefill fixed seq length (64)

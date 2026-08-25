@@ -18,6 +18,7 @@ import Foundation
 /// Eviction: LRU by `lastAccess` once total bytes exceed `capacityBytes`.
 ///
 /// Concurrency: not thread-safe. Caller must serialize.
+@available(iOS 18.0, macOS 15.0, *)
 final class PrefixCache {
 
     // MARK: - Public types
@@ -196,6 +197,7 @@ final class PrefixCache {
 
 // MARK: - Blob reader (used by ChunkedEngine.restoreSnapshot)
 
+@available(iOS 18.0, macOS 15.0, *)
 extension PrefixCache {
     /// Read a blob from disk and split into per-buffer Data slices.
     /// Verifies header magic, position, and buffer count/sizes match the entry.

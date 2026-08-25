@@ -18,6 +18,7 @@
 import CoreML
 import Foundation
 
+@available(iOS 18.0, macOS 15.0, *)
 public final class CrossVocabSpeculativeEngine {
 
     let engine: ChunkedEngine

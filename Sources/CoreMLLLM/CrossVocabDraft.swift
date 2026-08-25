@@ -39,6 +39,7 @@ import Foundation
 
 /// Bidirectional Qwen <-> Gemma id map. Produced offline by
 /// `conversion/build_qwen_gemma_vocab_map.py`. Negative value = miss.
+@available(iOS 18.0, macOS 15.0, *)
 public final class CrossVocabMap {
     public let qwenVocabSize: Int
     public let gemmaVocabSize: Int
@@ -94,6 +95,7 @@ public final class CrossVocabMap {
 // MARK: - Qwen drafter
 
 /// Result of a single drafting burst.
+@available(iOS 18.0, macOS 15.0, *)
 public struct DraftBurst {
     /// Up to K Gemma draft token ids (empty if the seed was unmappable).
     public let drafts: [Int32]
@@ -106,6 +108,7 @@ public struct DraftBurst {
     public let startPosition: Int
 }
 
+@available(iOS 18.0, macOS 15.0, *)
 public final class CrossVocabDraft {
 
     /// Closure that runs one Qwen forward pass at `position` with input

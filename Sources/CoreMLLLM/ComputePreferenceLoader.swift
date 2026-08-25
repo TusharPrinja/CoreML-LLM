@@ -26,6 +26,7 @@
 import CoreML
 import Foundation
 
+@available(iOS 18.0, macOS 15.0, *)
 public enum ComputePreferenceError: Error, LocalizedError {
     case readFailed(String)
     case invalidSidecar(String)
@@ -38,6 +39,7 @@ public enum ComputePreferenceError: Error, LocalizedError {
     }
 }
 
+@available(iOS 18.0, macOS 15.0, *)
 public enum ComputePreferenceLoader {
 
     /// Load or infer an MLModelConfiguration for the mlpackage at `url`.

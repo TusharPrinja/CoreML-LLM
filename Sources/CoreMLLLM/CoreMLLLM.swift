@@ -28,6 +28,7 @@ import Tokenizers
 ///     print(token, terminator: "")
 /// }
 /// ```
+@available(iOS 18.0, macOS 15.0, *)
 public final class CoreMLLLM: @unchecked Sendable {
     private let tokenizer: any Tokenizer
     private var config: ModelConfig
@@ -1820,6 +1821,7 @@ public final class CoreMLLLM: @unchecked Sendable {
 
 // MARK: - Error types
 
+@available(iOS 18.0, macOS 15.0, *)
 public enum CoreMLLLMError: LocalizedError {
     case configNotFound
     case predictionFailed

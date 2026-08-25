@@ -40,6 +40,7 @@ import CoreML
 import CryptoKit
 import Foundation
 
+@available(iOS 18.0, macOS 15.0, *)
 public enum PrefixKVCacheError: Error, LocalizedError {
     case hashFailed
     case ioFailed(String)
@@ -58,6 +59,7 @@ public enum PrefixKVCacheError: Error, LocalizedError {
 
 /// Engine-side protocol: dump / restore KV state to/from a directory.
 /// ChunkedEngine (bench-owned file) should conform to this.
+@available(iOS 18.0, macOS 15.0, *)
 public protocol PrefixKVSnapshotable: AnyObject {
     /// Current position / prefill length (in tokens).
     var currentPosition: Int { get }
@@ -70,6 +72,7 @@ public protocol PrefixKVSnapshotable: AnyObject {
     func readKVSnapshot(from directory: URL) throws
 }
 
+@available(iOS 18.0, macOS 15.0, *)
 public final class PrefixKVCache {
     public let rootDirectory: URL
     public let modelId: String
@@ -195,6 +198,7 @@ public final class PrefixKVCache {
 
 // MARK: - Default Caches/ location
 
+@available(iOS 18.0, macOS 15.0, *)
 public extension PrefixKVCache {
     /// Standard location: <App Caches>/PrefixKV/<modelId slug>/.
     static func defaultRoot(for modelId: String) throws -> URL {

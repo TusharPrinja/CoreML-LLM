@@ -17,6 +17,7 @@ import Foundation
 
 /// MTP speculative decoding engine — drafts K tokens with the MTP drafter,
 /// verifies them against the target (ChunkedEngine), and commits accepted tokens.
+@available(iOS 18.0, macOS 15.0, *)
 public final class MtpSpeculativeEngine {
 
     let engine: ChunkedEngine

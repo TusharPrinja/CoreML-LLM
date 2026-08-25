@@ -10,6 +10,7 @@ import Foundation
 ///
 /// Uses Accelerate (vDSP + vImage) for vectorized INT8 → FP16 conversion
 /// instead of scalar loops (~4-6x faster per lookup).
+@available(iOS 18.0, macOS 15.0, *)
 final class EmbeddingLookup {
     private let data: Data  // memory-mapped (vocabSize * dim, int8)
     private let scales: Data  // memory-mapped (vocabSize, float16)
@@ -111,6 +112,7 @@ final class EmbeddingLookup {
 
 // MARK: - Float16 conversion (used across the package)
 
+@available(iOS 18.0, macOS 15.0, *)
 func fp16ToF32(_ bits: UInt16) -> Float {
     let sign: UInt32 = UInt32(bits >> 15) << 31
     let exp = UInt32((bits >> 10) & 0x1F)
@@ -120,6 +122,7 @@ func fp16ToF32(_ bits: UInt16) -> Float {
     return Float(bitPattern: sign | ((exp + 112) << 23) | (frac << 13))
 }
 
+@available(iOS 18.0, macOS 15.0, *)
 func f32ToFp16(_ value: Float) -> UInt16 {
     let bits = value.bitPattern
     let sign = UInt16((bits >> 16) & 0x8000)

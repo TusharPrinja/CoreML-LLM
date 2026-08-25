@@ -34,6 +34,7 @@ import Foundation
 /// Owns no model assets and does no ANE work of its own; it only orchestrates
 /// the pure n-gram drafter against a `SpeculativeTarget` (typically
 /// `ChunkedEngine`).
+@available(iOS 18.0, macOS 15.0, *)
 public final class PromptLookupLoop {
 
     /// Suffix length used for the n-gram match (typical 2 or 3).

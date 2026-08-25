@@ -16,6 +16,7 @@
 import CoreML
 import Foundation
 
+@available(iOS 18.0, macOS 15.0, *)
 public enum SpeculativeError: Error {
     case missingModel(String)
     case verifyFailed(String)
@@ -24,6 +25,7 @@ public enum SpeculativeError: Error {
 
 /// Target-side operations needed by the speculative decoding loop.
 /// Implement this on whatever class owns the target chunks (ChunkedEngine).
+@available(iOS 18.0, macOS 15.0, *)
 public protocol SpeculativeTarget: AnyObject {
     /// Hidden states at the specified layer indices from the most recent
     /// decode step. Layer order matches the request order. Each array is
@@ -48,6 +50,7 @@ public protocol SpeculativeTarget: AnyObject {
     func commitAccepted(_ tokens: [Int32]) throws
 }
 
+@available(iOS 18.0, macOS 15.0, *)
 extension SpeculativeTarget {
     public func verifyCandidatesTopN(_ candidates: [Int32], K: Int, topN: Int)
         throws -> (argmax: [Int32], topN: [[Int32]])
@@ -57,6 +60,7 @@ extension SpeculativeTarget {
     }
 }
 
+@available(iOS 18.0, macOS 15.0, *)
 public final class SpeculativeLoop {
     // MARK: - Assets
 
@@ -295,12 +299,14 @@ public final class SpeculativeLoop {
 
 // MARK: - Debug helpers (fp16 scalar dump + L2 norm)
 
+@available(iOS 18.0, macOS 15.0, *)
 private func fp16BitsToFloat(_ bits: UInt16) -> Float {
     // Use Swift's built-in Float16. Avoids the manual subnormal shift loop
     // that underflowed UInt32 `e` on subnormals (e.g., 0x8212 → e=0, mant≠0).
     Float(Float16(bitPattern: bits))
 }
 
+@available(iOS 18.0, macOS 15.0, *)
 private func hiddenL2Norm(_ a: MLMultiArray) -> Float {
     let n = a.count
     let p = a.dataPointer.bindMemory(to: UInt16.self, capacity: n)

@@ -14,6 +14,7 @@ import Foundation
 /// joined by single spaces, optionally followed by a `<|audio>…<audio|>`
 /// block. This processor only extracts pixels and PCM — prompt assembly and
 /// feature concatenation live in `CoreMLLLM`.
+@available(iOS 18.0, macOS 15.0, *)
 public enum VideoProcessor {
 
     public struct Frame: Sendable {

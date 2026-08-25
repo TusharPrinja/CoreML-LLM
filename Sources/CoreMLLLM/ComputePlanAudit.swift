@@ -13,6 +13,7 @@ import Foundation
 /// // Set env var COMPUTE_PLAN_AUDIT=1 or UserDefaults bool "COMPUTE_PLAN_AUDIT"
 /// await ComputePlanAudit.run(modelDirectory: url, computeUnits: .cpuAndNeuralEngine)
 /// ```
+@available(iOS 18.0, macOS 15.0, *)
 public enum ComputePlanAudit {
 
     /// Returns true when the audit should run.

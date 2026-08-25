@@ -15,6 +15,7 @@ import Tokenizers
 ///   input_ids       (1, L)  int32
 ///   attention_mask  (1, L)  fp16  (1.0 valid, 0.0 pad)
 ///   → embedding     (1, 768) fp16 — L2 unit norm
+@available(iOS 18.0, macOS 15.0, *)
 public final class EmbeddingGemma {
 
     public struct Config: Sendable {

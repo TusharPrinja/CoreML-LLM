@@ -31,6 +31,7 @@ import Foundation
 /// allocating fresh MLFeatureValue wrappers per step. Forwards
 /// `hidden_in` from the previous step's predecessor (chunk[i-1] output
 /// or the embed lookup buffer for chunk[0]).
+@available(iOS 18.0, macOS 15.0, *)
 private final class VL2BBodyFeatures: NSObject, MLFeatureProvider {
     private let hiddenSource: MLFeatureProvider  // carries "hidden" feature
     private let fvPos: MLFeatureValue
@@ -78,6 +79,7 @@ private final class VL2BBodyFeatures: NSObject, MLFeatureProvider {
 /// Trivial provider that wraps the embed-lookup MLMultiArray as
 /// `hidden`, so chunk[0] reads it through the same path as chunks[i>0]
 /// reading from the previous chunk's output.
+@available(iOS 18.0, macOS 15.0, *)
 private final class VL2BHiddenProvider: NSObject, MLFeatureProvider {
     let fvHidden: MLFeatureValue
     let featureNames: Set<String> = ["hidden"]
@@ -99,6 +101,7 @@ private final class VL2BHiddenProvider: NSObject, MLFeatureProvider {
 ///   update_mask  (1, 1, max_seq, T)   — col t one-hot at pos+t
 ///   attn_mask    (1, 1, T, max_seq)   — -1e4 on future / unwritten
 /// KV caches keep the same (1, num_kv_heads, max_seq, head_dim) shape.
+@available(iOS 18.0, macOS 15.0, *)
 private final class VL2BPrefillFeatures: NSObject, MLFeatureProvider {
     private let hiddenSource: MLFeatureProvider
     private let fvCos: MLFeatureValue
@@ -150,6 +153,7 @@ private final class VL2BPrefillFeatures: NSObject, MLFeatureProvider {
 
 /// Prefill variant of chunk_0_vision — adds DeepStack row inputs and
 /// per-token `visual_active` gate alongside the batched body inputs.
+@available(iOS 18.0, macOS 15.0, *)
 private final class VL2BPrefillVisionFeatures: NSObject, MLFeatureProvider {
     private let base: VL2BPrefillFeatures
     private let fvDs0: MLFeatureValue
@@ -186,6 +190,7 @@ private final class VL2BPrefillVisionFeatures: NSObject, MLFeatureProvider {
 /// `ds_0`, `ds_1`, `ds_2`, and `visual_active` on top of the regular
 /// body-chunk inputs. DeepStack and gate feature values are caller-
 /// owned so the generator can swap them per step without reallocating.
+@available(iOS 18.0, macOS 15.0, *)
 private final class VL2BVisionChunk0Features: NSObject, MLFeatureProvider {
     private let base: VL2BBodyFeatures
     private let fvDs0: MLFeatureValue
@@ -220,6 +225,7 @@ private final class VL2BVisionChunk0Features: NSObject, MLFeatureProvider {
 
 
 @Observable
+@available(iOS 18.0, macOS 15.0, *)
 public final class Qwen3VL2BGenerator {
     public struct Config {
         let maxSeq: Int          // 2048

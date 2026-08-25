@@ -6,6 +6,7 @@ import UIKit
 /// Downloads and caches CoreML models with background URLSession and pause/resume support.
 /// Uses up to 4 concurrent connections for faster HuggingFace downloads (~2x speedup).
 @Observable
+@available(iOS 18.0, macOS 15.0, *)
 public final class ModelDownloader: NSObject {
     public static let shared = ModelDownloader()
 
@@ -1975,6 +1976,7 @@ public final class ModelDownloader: NSObject {
 
 // MARK: - URLSession Delegate
 
+@available(iOS 18.0, macOS 15.0, *)
 extension ModelDownloader: URLSessionDownloadDelegate {
     public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask,
                            didFinishDownloadingTo location: URL) {
@@ -2121,6 +2123,7 @@ extension ModelDownloader: URLSessionDownloadDelegate {
     }
 }
 
+@available(iOS 18.0, macOS 15.0, *)
 public enum DownloadError: LocalizedError {
     case invalidURL, extractionFailed
     public var errorDescription: String? {

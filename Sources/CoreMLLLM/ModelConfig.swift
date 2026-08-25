@@ -1,6 +1,7 @@
 import Foundation
 
 /// Model configuration loaded from model_config.json.
+@available(iOS 18.0, macOS 15.0, *)
 public struct ModelConfig: Sendable {
     public let modelName: String
     public let architecture: String

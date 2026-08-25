@@ -39,6 +39,7 @@ import Foundation
 
 /// Bounded-memory suffix trie keyed by token ids, designed for
 /// SuffixDecoding-style drafting. See file header for design notes.
+@available(iOS 18.0, macOS 15.0, *)
 public final class SuffixTree {
 
     // MARK: - Node

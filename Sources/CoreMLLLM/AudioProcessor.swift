@@ -8,6 +8,7 @@ import Foundation
 ///
 /// The final projection (output_proj + RMSNorm + embed_proj) runs in Swift/Accelerate
 /// with float32 precision because CoreML GPU runtime corrupts RMSNorm(with_scale=False).
+@available(iOS 18.0, macOS 15.0, *)
 public enum AudioProcessor {
 
     // MARK: - Constants (matching HF Gemma4AudioFeatureExtractor)

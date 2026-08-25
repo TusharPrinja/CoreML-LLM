@@ -50,6 +50,7 @@ import Foundation
 /// LookAhead / Jacobi speculative engine. Drafts K tokens per cycle via
 /// n-gram lookup and Jacobi warm-start, verifies them in one ANE
 /// dispatch, and commits the accepted prefix.
+@available(iOS 18.0, macOS 15.0, *)
 public final class LookaheadEngine {
 
     // MARK: - Configuration

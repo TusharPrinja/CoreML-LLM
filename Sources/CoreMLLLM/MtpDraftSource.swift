@@ -18,6 +18,7 @@ import CoreML
 import Foundation
 
 /// MTP drafter for speculative decoding, using Google's pre-trained weights.
+@available(iOS 18.0, macOS 15.0, *)
 public final class MtpDraftSource {
 
     // MARK: - Model

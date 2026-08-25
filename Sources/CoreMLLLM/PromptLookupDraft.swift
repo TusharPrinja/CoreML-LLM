@@ -19,6 +19,7 @@
 
 import Foundation
 
+@available(iOS 18.0, macOS 15.0, *)
 public enum PromptLookupDraft {
     /// Find the most recent n-gram match in `history` whose suffix matches
     /// the last `ngramSize` tokens, and return up to `maxDraftLen` tokens
