@@ -678,7 +678,7 @@ public final class Qwen3VL2BGenerator {
         }
     }
 
-    @available(iOS 17.0, *)
+    @available(iOS 18.0, macOS 15.0, *)
     private static func walkOps(_ block: MLModelStructure.Program.Block,
                                  plan: MLComputePlan,
                                  total: inout Int, ane: inout Int,

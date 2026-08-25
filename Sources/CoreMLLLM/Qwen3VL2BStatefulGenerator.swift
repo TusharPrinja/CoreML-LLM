@@ -417,7 +417,7 @@ public final class Qwen3VL2BStatefulGenerator {
     /// Surfaces the 42 ops that INT8 palettize pushed off ANE — if any
     /// chunk shows <95% ANE at runtime-preferred we know dispatch is
     /// forking to CPU/GPU for those ops, which stalls the pipeline.
-    @available(iOS 17.0, *)
+    @available(iOS 18.0, macOS 15.0, *)
     public func audit() async {
         guard let r = resolveURLs() else {
             auditText = "FAIL — chunks not resolved"
@@ -456,7 +456,7 @@ public final class Qwen3VL2BStatefulGenerator {
         auditText = lines.joined(separator: "\n")
     }
 
-    @available(iOS 17.0, *)
+    @available(iOS 18.0, macOS 15.0, *)
     private static func walkOps(_ block: MLModelStructure.Program.Block,
                                  plan: MLComputePlan,
                                  total: inout Int, ane: inout Int,
